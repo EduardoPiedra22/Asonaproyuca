@@ -1,0 +1,63 @@
+{% extends "home.html" %} {% load static %} {% block body %}
+<body class="hold-transition sidebar-collapse layout-top-nav">
+  <div class="wrapper">
+    <!-- Navbar -->
+    {% include 'vtc/sidevar.html'%}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+
+    {% include 'vtc/header.html' %}
+    <!-- Content Wrapper. Contains page content -->
+
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <p class="m-0 text-dark"><strong>Bienvenido: {{ user.get_full_name }}. Ultima conección: {{ user.date_joined }} </strong>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{% url 'app:dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">{{ url }}</li>
+              </ol>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container">
+          {% block content %} {% endblock %}
+          <!-- /.col-md-6 -->
+
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+      <div class="row">
+        <div class="col-lg-5">{% include 'chat.html' %}</div>
+      </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    {% include 'fooder.html' %}
+  </div>
+</body>
+{% endblock body %} {% block java %} {% endblock %}

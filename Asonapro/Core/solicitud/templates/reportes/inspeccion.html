@@ -1,0 +1,17 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sembrador in sembradores %}
+    <tr>
+      <td>{{ sembrador.first_name }}</td>
+      <td>{{ sembrador.edad }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block content %}
+	<!-- Main content -->
+	<section class="content">
+
+	    <!-- Default box -->
+	    <div class="card">
+	        <div class="card-body row">
+		    	<div class="col-5">
+		            <img src="{% static 'img/AzonaProYuca.png' %}" class="product-image" alt="Product Image">
+		        	<h5>Asonaproyucade<strong>Venezuela</strong></h5>
+		        	<p class="lead mb-5"># Direccion de la empresa reservada para el final
+		        	<!-- Agregar la Direccion de LA EMPRESA FISICA -->
+
+		          </p>
+		        </div>
+	      
+		        <!-- Agregar la Direccion de Correo Electronica para que los usarios tengana asistencia -->
+
+	        	<div class="col-7">
+		            <div class="form-group">
+		              <label for="inputName">Name</label> # Contactar al asistecia de Asonaproyuca
+		              <input type="text" id="inputName" class="form-control">
+		            </div>
+		            <div class="form-group">
+		              <label for="inputEmail">E-Mail</label>
+		              <input type="email" id="inputEmail" class="form-control">
+		            </div>
+		            <div class="form-group">
+		              <label for="inputSubject">Subject</label>
+		              <input type="text" id="inputSubject" class="form-control">
+		            </div>
+		            <div class="form-group">
+		              <label for="inputMessage">Message</label>
+		              <textarea id="inputMessage" class="form-control" rows="4"></textarea>
+		            </div>
+		            <div class="form-group">
+		              <input type="submit" class="btn btn-primary" value="Send message">
+		            </div>
+	        	</div>
+	        </div>
+	    </div>
+
+	</section>
+	<!-- /.content -->
+
+
+{% endblock content %}

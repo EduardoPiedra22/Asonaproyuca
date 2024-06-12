@@ -1,0 +1,36 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block head_list %}
+
+    <script src="{% static 'cat/js/list.js'%}"></script>
+
+{% endblock head_list %}
+
+{% block columns %}
+	<tr>
+		<th scope="col" style="width: 10%;">id</th>
+		<th scope="col" style="width: 20%;">Nombre</th>
+		<th scope="col" style="width: 30%;">Descripcion</th>
+		<th scope="col" style="width: 20%;">Opciones</th>
+	</tr>
+
+{% endblock columns %}
+
+{% block rows %}
+
+{% endblock rows %}
+
+{% block modal %}
+<!-- Modal -->
+	{% include 'category/modal_add_categorias.html' %}
+{% endblock modal %}
+
+
+
+{% block java %}
+
+{% endblock java %}

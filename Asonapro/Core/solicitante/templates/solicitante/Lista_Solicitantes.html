@@ -1,0 +1,37 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% block head_list %}
+
+	<script src="{% static 'sol/js/list.js' %}"></script>
+
+{% endblock head_list %}
+
+{% block columns %}
+	<tr>
+		<th scope="col" style="width: 10%;">ID</th>
+		<th scope="col" style="width: 10%;">SOLICITANTE</th>
+		<th scope="col" style="width: 10%;">CONTACTOS</th>
+		<th scope="col" style="width: 10%;">DIRECCION</th>
+		<th scope="col" style="width: 10%;">FECHA INGRESO</th>
+		<th scope="col" style="width: 10%;">FECHA ACTUALIZACION</th>
+		<th scope="col" style="width: 10%;">USUARIO CREADOR</th>
+		<th scope="col" style="width: 10%;">USUARIO EDITOR</th>
+		<th scope="col" style="width: 10%;">FECHA DE NACIMIENTO-EDAD-SEXO</th>
+		<th scope="col" style="width: 10%;">OPCIONES</th>
+
+
+	</tr>
+
+{% endblock columns %}
+
+{% block rows %}
+
+
+{% endblock rows %}
+
+
+{% block java %}
+
+
+{% endblock java%}

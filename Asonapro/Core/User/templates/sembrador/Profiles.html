@@ -1,0 +1,633 @@
+{% extends "layout.html" %} {% load static %}
+{% block content %}
+
+  <section class="content-fluid">
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="card card-success card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              {% if sembrador_imagen %}
+                <img class="profile-user-img img-fluid img-circle" src="{{ sembrador_imagen }}" alt="User profile picture">
+              {% else %}
+              <!-- Agrega un marcador de posición o mensaje si no hay imagen -->
+                <span>No hay imagen disponible</span>
+              {% endif %}
+            </div>
+
+            <h3 class="profile-username text-center">{{sembrador.username|title }}</h3>
+            <p class="text-muted text-center">
+              {{sembrador.profesion_ocupacion|title }}
+            </p>
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <p class="text-center"><b>Hectáreas</b></p>
+              </li>
+                <li class="list-group-item">
+                    <b>Disponibles</b> <a class="float-right"></a>
+                    <!-- Aquí estás utilizando el campo 'superficie_total_up' de la inspección actual -->
+                    <!-- Puedes agregar más contenido aquí si es necesario -->
+                </li>
+              <li class="list-group-item">
+                <b>Produccion</b> <a class="float-right">543</a>
+              </li>
+            </ul>
+            <button type="button" class="btn-show-qr btn btn-block btn-success">
+              Mi QR
+            </button>
+            <a href="{% url 'solicitud:Crear_inspeccion' %}" class="btn-show-qr btn btn-block btn-success">Crear Inspeccion</a>
+            <a href="{% url 'solicitud:ver_seguimientos_usuario_sembrador' %}" class="btn-show-qr btn btn-block btn-success">Mis Seguimientos</a>
+
+            <a
+              href="{% url 'solicitud:generar_pdf' id=request.user.id%}"
+              class="btn-show-qr btn btn-block btn-danger"
+              >Reportes Inspeccion PDF</a
+            >
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- About Me Box -->
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Sobre mí </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <strong><i class="fas fa-book mr-1"></i> Educacion</strong>
+
+            <p class="text-muted">
+              Ingeniería Agrícola. UCV - Universidad Central de Venezuela
+            </p>
+
+            <hr />
+
+            <strong
+              ><i class="fas fa-map-marker-alt mr-1"></i> U.T.M
+              Localizacion</strong
+            >
+
+            <p class="text-muted">
+              Barinas, Venezuela
+              <a
+                href="https://www.google.com/maps/place/Venezuela/@6.6571134,-66.6146705,6z/data=!3m1!4b1!4m6!3m5!1s0x8c2853cb36cbd801:0xdca0f2587cd54dd3!8m2!3d6.42375!4d-66.58973!16zL20vMDd5bGo"
+                >Aquí</a
+              >
+            </p>
+
+            <hr />
+
+            <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
+
+            <p class="text-muted">
+              <span class="tag tag-danger"
+                >Habilidad para el trabajo en equipo.</span
+              >
+              <span class="tag tag-success"
+                >Destreza para el trabajo bajo presión.</span
+              >
+              <span class="tag tag-info"
+                >Capacidad para comprender fenómenos biológicos.</span
+              >
+              <span class="tag tag-warning"
+                >Habilidades para desarrollar labores de campo.</span
+              >
+              <span class="tag tag-success"
+                >Capacidad de relacionarse con el sector agrícola.</span
+              >
+              <span class="tag tag-success"
+                >Desempeñarse satisfactoriamente en el medio rural e identificarse
+                con el mismo.</span
+              >
+              <span class="tag tag-success">Hábitos de estudio.</span>
+            </p>
+
+            <hr />
+
+            <strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+              fermentum enim neque.
+            </p>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+      <!-- /.col -->
+
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active" href="#activity" data-toggle="tab">Actividad</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#timeline" data-toggle="tab">Area de Trabajo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#settings" data-toggle="tab">Datos Personales</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="tab-content">
+              
+              <div class="tab-pane active" id="activity">
+                {% block publicacion %}
+                  <div class="container">
+                    <!-- Formulario para crear una nueva publicación -->
+                    <div class="mb-3">
+                      <h4>Crea una nueva publicación:</h4>
+                      <form method="post" action="{% url 'chat:crear_publicacion' %}">
+                        {% csrf_token %}
+                        <textarea name="contenido" class="form-control mb-2" placeholder="Escribe tu publicación"></textarea>
+                        <button type="submit" class="btn btn-primary">Publicar</button>
+                      </form>
+                    </div>
+
+                    <!-- Muestra las últimas publicaciones -->
+                    <div>
+                      <h3>Todas las Publicaciones:</h3>
+                      {% for publicacion in todas_publicaciones %}
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.usuario.username }}</h5>
+                            <p class="card-text">{{ publicacion.contenido }}</p>
+                            <p class="card-text"><small class="text-muted">{{ publicacion.fecha_publicacion }}</small></p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <div>
+                      <h3>Tus Últimas Publicaciones:</h3>
+                      {% for publicacion in ultimas_publicaciones_usuario %}
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ publicacion.usuario.username }}</h5>
+                            <p class="card-text">{{ publicacion.contenido }}</p>
+                            <p class="card-text"><small class="text-muted">{{ publicacion.fecha_publicacion }}</small></p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <!-- Agrega más secciones según sea necesario -->
+
+                  </div>
+                {% endblock %}
+              </div>
+            
+            
+
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="timeline">
+                <!-- The timeline -->
+                <div class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="bg-danger"> 10 Feb. 2014 </span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fas fa-envelope bg-success"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="far fa-clock"></i> 12:05</span>
+
+                      <h3 class="timeline-header">
+                        <a href="#">Support Team</a> sent you an email
+                      </h3>
+
+                      <div class="timeline-body">
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy
+                        zoodles, weebly ning heekya handango imeem plugg dopplr
+                        jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                        Babblely odeo kaboodle quora plaxo ideeli hulu weebly
+                        balihoo...
+                      </div>
+                      <div class="timeline-footer">
+                        <a href="#" class="btn btn-success btn-sm">Read more</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fas fa-user bg-info"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"
+                        ><i class="far fa-clock"></i> 5 mins ago</span
+                      >
+
+                      <h3 class="timeline-header border-0">
+                        <a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fas fa-comments bg-warning"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"
+                        ><i class="far fa-clock"></i> 27 mins ago</span
+                      >
+
+                      <h3 class="timeline-header">
+                        <a href="#">Jay White</a> commented on your post
+                      </h3>
+
+                      <div class="timeline-body">
+                        Take me to your leader! Switzerland is small and neutral!
+                        We are more like Germany, ambitious and misunderstood!
+                      </div>
+                      <div class="timeline-footer">
+                        <a href="#" class="btn btn-warning btn-flat btn-sm"
+                          >View comment</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="bg-success"> 3 Jan. 2014 </span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fas fa-camera bg-purple"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"
+                        ><i class="far fa-clock"></i> 2 days ago</span
+                      >
+
+                      <h3 class="timeline-header">
+                        <a href="#">Mina Lee</a> uploaded new photos
+                      </h3>
+
+                      <div class="timeline-body">
+                        <img src="https://placehold.it/150x100" alt="..." />
+                        <img src="https://placehold.it/150x100" alt="..." />
+                        <img src="https://placehold.it/150x100" alt="..." />
+                        <img src="https://placehold.it/150x100" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            
+
+              <div>
+                <i class="far fa-clock bg-gray"></i>
+              </div>
+              <!-- END timeline item -->
+
+              <!-- /.tab-pane -->
+            </div>
+            <div class="tab-pane" id="settings">              
+              <div class="card mb-10">
+                  <div class="card-body">
+              
+                    <!-- Nombre y Apellido -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Nombre y Apellido:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.first_name|title }} {{ sembrador.last_name|title }}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Cedula:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.cedula}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <!-- Fecha de Nacimiento -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Fecha de Nacimiento:</p>  
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.fecha_nacimiento }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Correo -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Correo:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.email }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Teléfono de Casa -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Telefono de casa: </p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.telefono_casa }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Teléfono Móvil -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Telefono Movil:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.telefono_personal }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Dirección -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Direccion:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.direccion|title }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Sexo -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Sexo:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.get_sexo_display }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Estado Civil -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Estado Civil:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.estado_civil|title }}</p>
+                      </div>
+                    </div>
+                    <hr>
+              
+                    <!-- Profesión -->
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <p class="mb-0">Profesión:</p>
+                      </div>
+                      <div class="col-sm-5">
+                        <p class="text-muted mb-0">{{ sembrador.profesion_ocupacion|title }}</p>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              <!-- Nombre y Apellido del Cónyuge -->
+                <div class="card mb-10">
+                  <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Nombre del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.conyuge_nombre|default:"N/A"|title }} {{ sembrador.conyuge_apellido|default:"N/A"|title }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                
+                      <!-- Cédula del Cónyuge -->
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Cédula del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.conyuge_cedula|default:"N/A"|title }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                
+                      <!-- Edad del Cónyuge -->
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Edad del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.conyuge_edad|default:"N/A"|title }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                
+                      <!-- Sexo del Cónyuge -->
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Sexo del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.get_conyuge_sexo_display|default:"N/A"|title }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                
+                      <!-- Teléfono Fijo del Cónyuge -->
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Teléfono Fijo del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.conyuge_telefono_fijo|default:"N/A" }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                
+                      <!-- Teléfono Celular del Cónyuge -->
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <p class="mb-0">Teléfono Celular del Cónyuge:</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <p class="text-muted mb-0">{{ sembrador.conyuge_telefono_celular|default:"N/A" }}</p>
+                        </div>
+                      </div>
+                    
+                    </div>
+                </div>
+                <div class="card mb-10">
+                  <div class="card-body">
+                    <!-- Estado de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Estado de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_estado|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                          <hr>
+                                <!-- Municipio de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Municipio de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_municipio|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <!-- Parroquia de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Parroquia de la Dirección de Habitaci/p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_parroquia|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                                <!-- Caserío de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Caserío de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_caserio|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                      
+                            <!-- Sector de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Sector de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_sector|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                      
+                        <!-- Ciudad Cercana de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Ciudad Cercana de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_ciudad_cercana|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                      
+                        <!-- Punto de Referencia de la Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Punto de Referencia de la Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_punto_referencia|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                        <hr>
+                      
+                        <!-- Dirección de Habitación -->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="mb-0">Dirección de Habitación:</p>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="text-muted mb-0">{{ sembrador.direccion_habitacion_direccion|default:"N/A" }}</p>
+                          </div>
+                        </div>
+                      
+                          </div>
+                        </div>
+                      
+                      </div>
+
+                      </div>
+                
+                    </div>
+                  </div>
+                
+                </div>
+            
+            </div>
+            </div>
+              <!-- /.ACA ESTARAN LOS DATOS DE LA INSPECCION DEL TECNICO -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+      <!-- /.col -->
+    </div>
+
+    <!-- /.row -->
+  </section>
+
+  <!-- Agrega esto en tu bloque head -->
+  <script src="{% static 'js/qrcode.min.js' %}"></script>
+
+  <!-- Agrega este script al final del bloque content -->
+  <!-- Agrega esto al final de tu bloque content -->
+  <script>
+    // Espera a que el DOM esté cargado
+    document.addEventListener("DOMContentLoaded", function () {
+      // Selecciona el botón
+      var btn = document.querySelector(".btn-show-qr");
+      // Agrega un listener al clic del botón
+      btn.addEventListener("click", function () {
+        // Crea el contenido del card con el código QR
+        var cardContent ='<div class="card card-success"><div class="card-body text-center"><div id="qrcode"></div></div></div>';
+
+
+        // Abre un modal (puedes usar otro contenedor según tu diseño)
+        Swal.fire({
+          title: "Código QR",
+          html: cardContent,
+          showCloseButton: true,
+          showConfirmButton: false,
+          customClass: "swal-wide", // Ajusta el ancho según sea necesario
+        });
+
+        // Obtiene el contenido actual del QR (puedes ajustar esta URL)
+        var qrContent ="{% url 'solicitud:Crear_inspeccion' %}";
+
+        // Genera el código QR en el contenedor 'qrcode'
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          text: qrContent,
+          width: 128,
+          height: 128,
+        });
+      });
+    });
+  </script>
+{% endblock %}

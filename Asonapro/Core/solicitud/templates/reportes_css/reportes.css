@@ -1,0 +1,12 @@
+.centrado {
+  text-align: center;
+}
+
+.centrado {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.table {
+  width: 100%; /* Haz que la tabla ocupe todo el ancho de la página */
+}

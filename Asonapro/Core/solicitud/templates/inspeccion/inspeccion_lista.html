@@ -1,0 +1,31 @@
+{% extends "list.html" %} {% load static %} {% block head_list %}
+
+<script src="{% static 'inspeccion/js/list.js' %}"></script>
+
+{% endblock %} 
+
+{% block buttons_list %}
+<a href="{{ list_url }}" class="btn btn-success btn-flat">
+  <i class="fas fa-sync"></i> Actualizar
+</a>
+{% endblock %} 
+
+{% block columns %}
+<tr>
+  <th scope="col">NRO</th>
+  <th scope="col">Datos del Sembrador</th>
+  <th scope="col">Datos del Tecnico</th>
+  <th scope="col">Nombre de la Unidad</th>
+  <th scope="col">Dirección de la Unidad</th>
+  <th scope="col">Cómo Llegar</th>
+  <th scope="col">Estado</th>
+  <th scope="col">Municipio</th>
+  <th scope="col">Parroquia</th>
+  <th scope="col">Vive en la Unidad</th>
+  <th scope="col">Frecuencia de Visita</th>
+  <th scope="col">Tenencia de Tierra</th>
+  <th scope="col">Vivienda</th>
+  <th scope="col">Opciones</th>
+</tr>
+
+{% endblock %} {% block rows %} {% endblock %} {% block java %} {% endblock %}

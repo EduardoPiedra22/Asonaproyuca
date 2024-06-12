@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/adminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css' %}"
+    />
+
+    <!-- overlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/adminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}"
+    />
+
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/adminLTE-3.2.0/css/adminlte.css' %}"
+    />
+
+    <!-- chat CSS -->
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css'%}"
+    />
+
+    {% block head %} 
+    {% endblock %}
+  </head>
+
+  {% block body %} 
+  {% endblock %}
+
+  <!-- jQuery -->
+  <script src="{% static 'lib/adminLTE-3.2.0/plugins/jquery/jquery.min.js' %}"></script>
+
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'lib/adminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- AdminLTE App -->
+  <script src="{% static 'lib/adminLTE-3.2.0/js/adminlte.min.js' %}"></script>
+
+  <!-- overlayScrollbars -->
+  <script src="{% static 'lib/adminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+
+  <script src="{% static 'lib/adminLTE-3.2.0/plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
+
+  <!-- AdminLTE for demo purposes -->
+  <script src="{% static 'lib/adminLTE-3.2.0/js/demo.js'%} "></script>
+
+  <!-- Alertas de sweetalert -->
+  <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+
+  <!-- Funciones de javascript -->
+  <script src="{% static 'js/functions.js' %}"></script>
+
+  <!-- Chat JS -->
+  <script src="{% static 'js/chat.js' %}"></script>
+
+  <!-- Plugin de Alertas de formularios jquery-confirm-v3.3.4 -->
+  <script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
+
+  <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+{% block java %} 
+
+{% endblock %}
+</html>

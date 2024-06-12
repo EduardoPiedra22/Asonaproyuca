@@ -1,0 +1,15 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% block content %}
+  <h2>Lista de Grupos</h2>
+  <ul>
+    {% for group in groups %}
+      <li>{{ group.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block java %}
+  
+{% endblock java %}

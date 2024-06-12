@@ -1,0 +1,36 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block head_list %}
+
+    <script src="{% static 'misiones/js/list.js'%}"></script>
+
+{% endblock head_list %}
+
+{% block columns %}
+	<tr>
+		<th scope="col" style="width: 10%;">id</th>
+		<th scope="col" style="width: 20%;">Nombre Apellido y Cedula</th>
+		<th scope="col" style="width: 30%;">Fecha nacimiento / Edad y Sexo</th>
+		<th scope="col" style="width: 20%;">Contactos</th>
+		<th scope="col" style="width: 20%;">Opciones</th>
+	</tr>
+
+{% endblock columns %}
+
+{% block rows %}
+
+{% endblock rows %}
+
+{% block modal %}
+
+{% endblock modal %}
+
+
+
+{% block java %}
+
+{% endblock java %}

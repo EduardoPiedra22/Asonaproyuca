@@ -1,0 +1,41 @@
+{% extends "list.html" %} {% load static %} {% block head_list %}
+
+<script src="{% static 'seguimiento/js/list.js' %}"></script>
+
+{% endblock %} {% block columns %}
+<tr>
+  <th scope="col">NRO</th>
+  <th scope="col">Sembrador</th>
+  <th scope="col">cédula</th>
+  <th scope="col">Nombre</th>
+  <th scope="col">Fecha de Visita</th>
+  <th scope="col">Fecha Próxima de Visita</th>
+  <th scope="col">Motivo de Visita</th>
+  <th scope="col">Lote 1</th>
+  <th scope="col">Lote 2</th>
+  <th scope="col">Lote 3</th>
+  <th scope="col">Lote 4</th>
+  <th scope="col">Edad del Cultivo</th>
+  <th scope="col">Superficie Up</th>
+  <th scope="col">Superficie Preparada</th>
+  <th scope="col">Superficie Sembrada</th>
+  <th scope="col">Rubro Sembrado</th>
+  <th scope="col">Semilla Variedad</th>
+  <th scope="col">Realizar Recomendación</th>
+  <th scope="col">Fecha Estimada de Cosecha</th>
+  <th scope="col">Superficie Por Consechar</th>
+  <th scope="col">Superficie Cosechada</th>
+  <th scope="col">Superficie Perdida</th>
+  <th scope="col">Superficie Efectiva</th>
+  <th scope="col">Estimación del Rendimiento</th>
+  <th scope="col">Rendimiento</th>
+  <th scope="col">Rendimiento Total</th>
+  <th scope="col">Dar Continuidad</th>
+  <th scope="col">Descripción</th>
+  <th scope="col">Coordenadas Norte</th>
+  <th scope="col">Coordenadas Sur</th>
+  <th scope="col">Técnico</th>
+  <th scope="col">OPCIONES</th>
+</tr>
+
+{% endblock %} {% block rows %} {% endblock %} {% block java %} {% endblock %}

@@ -1,0 +1,58 @@
+{% load static %}
+<div id="button-show">
+  <button class="chatbot-toggler square-btn">
+    <span class="fas fa-comments"></span>
+  </button>
+</div>
+<div class="chatbot">
+  <header>
+    <img
+      id="src_img"
+      src="{{request.user.get_image}}"
+      class="img-profile"
+      alt=""
+    />
+    <h6 id="full_name">Chat</h6>
+    <button class="btn_header users_list square-btn success-btn">
+      <i class="fas fa-users"></i>
+    </button>
+    <span class="close-btn"><i class="fas fa-times"></i></span>
+  </header>
+  <div class="home" id="home">
+    <ul class="users_container">
+      {% for user_data in users_data %}
+      <li
+        class="card_user users"
+        data-id="{{user_data.id}}"
+        onclick="activateRadio(this.getAttribute('data-id'))"
+      >
+        <a>
+          <img
+            src="{{ user_data.image }}"
+            id="img_user"
+            class="img-circle"
+            alt="User Image"
+          />
+          <span id="username">{{ user_data.full_name }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="message" style="display: none">
+    <ul class="chatbox" id="message_list"></ul>
+    <div class="chat-input">
+      <textarea
+        placeholder="Escribe un mensaje..."
+        spellcheck="false"
+        required
+      ></textarea>
+      <span class="send_btn success-btn square-btn"
+        ><i class="fas fa-paper-plane"></i
+      ></span>
+      <span class="cancel_update d-none square-btn"
+        ><i class="fas fa-times f-13"></i
+      ></span>
+    </div>
+  </div>
+</div>

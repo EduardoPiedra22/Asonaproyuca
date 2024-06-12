@@ -1,0 +1,62 @@
+{% extends "layout.html" %}{% load static %}{% block content %}
+
+<div class="container">
+  <div class="row m-4">
+
+   
+    <!-- ./col -->
+    <div class="col-lg-12 col-12">
+      <!-- small card -->
+      <a
+        href="{% url 'solicitud:ver_seguimientos_usuario_tecnico' %}"
+        class="small-box bg-white callout callout-success mb-4"
+      >
+        <div class="inner">
+          <h3>Listado</h3>
+
+          <p>Seguimientos </p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-list-ol" aria-hidden="true"></i>
+        </div>
+      </a>
+    </div>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    <div class="col-lg-12 col-12">
+      <!-- small card -->
+      <a
+        href="{% url 'user:User_lista' %}"
+        class="small-box bg-white callout callout-success mb-4"
+      >
+        <div class="inner">
+          <h3>Entes Adscritos</h3>
+
+          <p></p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+      </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-12 col-12">
+      <!-- small card -->
+      <a href="#" class="small-box bg-white callout callout-success mb-4">
+        <div class="inner">
+          <h3>Exportar reportes</h3>
+
+          <p>
+            Reportes 
+          </p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-chart-pie"></i>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

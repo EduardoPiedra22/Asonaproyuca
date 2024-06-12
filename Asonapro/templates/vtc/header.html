@@ -1,0 +1,245 @@
+{% load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-success elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'app:index' %}" class="brand-link">
+    <img src={% static 'img/AzonaProYuca.png' %} alt="Sistema Logo"
+    class="brand-image img-circle elevation-3" style="opacity: 0.8"/>
+    <span class="brand-text font-weight-light">Sistema</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img
+          src="{% static 'img/user.png' %}"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+      </div>
+      <div class="info">
+        <a href="#" class="d-block"></a
+        ><strong class="text-white">{{ user }}</strong>
+      </div>
+    </div>
+
+    <!-- SidebarSearch Form 
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input
+          class="form-control form-control-sidebar"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    -->
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <!-- Add icons to the links using the .nav-icon class
+        with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="{% url 'app:dashboard' %}" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'user:profile_s' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Perfil Sembrador</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'user:profile' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Perfil Tecnico</p>
+          </a>
+        </li>
+        <li class="nav-header">USUARIOS</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fa-envelope"></i>
+            <p>
+              USUARIOS
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'user:User_lista' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">TECNICOS</li>
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Tecnicos
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'user:Tecnico_crear' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'user:Tecnico_Listar' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">SEMBRADORES</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fa-envelope"></i>
+            <p>
+              Sembradores
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'user:Sembrador_crear' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'user:Sembradores_Listar' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">UNIDADES DE PRODUCCION</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Unidades
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">INSPECCIONES Y SEGUIMIENTOS</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Inspecciones
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'solicitud:Crear_inspeccion' %}" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Seguimientos
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href="{% url 'solicitud:Crear_seguimiento' %}"
+                class="nav-link"
+              >
+                <i class="nav-icon far fa-circle text-info"></i>
+                <p>Registrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'solicitud:Listar_seguimiento' %}"
+                class="nav-link"
+              >
+                <i class="nav-icon fas fa-list"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">EXTRAS</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Documentation</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+<script>
+  $(document).ready(function () {
+    const url = window.location;
+
+    // Para 'ul.nav-sidebar'
+    $("ul.nav-sidebar a")
+      .filter(function () {
+        return url.href.indexOf(this.href) > -1;
+      })
+      .addClass("active");
+
+    // Para 'ul.nav-treeview'
+    $("ul.nav-treeview a")
+      .filter(function () {
+        return url.href.indexOf(this.href) > -1;
+      })
+      .parentsUntil(".nav-sidebar > .nav-treeview")
+      .addClass("menu-open")
+      .prev("a")
+      .addClass("active");
+  });
+</script>

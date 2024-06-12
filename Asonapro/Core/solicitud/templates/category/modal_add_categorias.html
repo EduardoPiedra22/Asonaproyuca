@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+<div class="modal fade" id="myModalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<form action="." method="post" id="formulario" enctype="multipart/form data">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					{% csrf_token %}
+
+					<input type="hidden" name="action" value="add">
+					{% if form.errors %}
+						<div class="alert alert-danger alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+							<ul>
+								{% for field in form %}
+									{% for error in field.errors %}
+									<li>{{ error }}</li>
+									{% endfor %}
+								{% endfor %}
+							</ul>
+						</div>
+					{% endif %}
+
+					{% crispy form %}
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">guardar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

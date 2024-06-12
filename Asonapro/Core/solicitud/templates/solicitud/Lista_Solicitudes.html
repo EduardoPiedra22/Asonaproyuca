@@ -1,0 +1,30 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% block head_list %}
+
+	<script src="{% static 'solicitud/js/list.js' %}"></script>
+
+{% endblock head_list %}
+
+{% block columns %}
+	<tr>
+		<th scope="col" style="width: 10%;">ID</th>
+		<th scope="col" style="width: 10%;">CATEGORIA</th>
+		<th scope="col" style="width: 20%;">SEMBRADOR</th>
+		<th scope="col" style="width: 10%;">FECHA REGISTRO</th>
+		<th scope="col" style="width: 20%;">ESTATUS</th>
+		<th scope="col" style="width: 10%;">DESCRIPCION</th>
+		<th scope="col" style="width: 10%;">DESCRIPCION MOTIVO</th>
+		<th scope="col" style="width: 10%;">OPCIONES</th>
+	</tr>
+
+{% endblock columns %}
+
+{% block rows %}
+
+{% endblock rows %}
+
+{% block java %}
+
+{% endblock java%}

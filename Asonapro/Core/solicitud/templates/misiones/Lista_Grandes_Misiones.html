@@ -1,0 +1,38 @@
+{% extends "list.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block head_list %}
+
+    <script src="{% static 'misiones/js/list_Gmisiones.js'%}"></script>
+
+{% endblock head_list %}
+
+{% block columns %}
+	<tr>
+		<th scope="col" style="width: 10%;">id</th>
+		<th scope="col" style="width: 20%;">Nombre de la Base de Mision</th>
+		<th scope="col" style="width: 20%;">Responsable de la Bases de Mision</th>
+		<th scope="col" style="width: 10%;">Municipio a la que pertenece</th>
+		<th scope="col" style="width: 10%;">Parroquia a la que pertenece</th>
+		<th scope="col" style="width: 10%;">Comunidad a la que pertenece</th>
+		<th scope="col" style="width: 20%;">Opciones</th>
+	</tr>
+
+{% endblock columns %}
+
+{% block rows %}
+
+{% endblock rows %}
+
+{% block modal %}
+
+{% endblock modal %}
+
+
+
+{% block java %}
+
+{% endblock java %}

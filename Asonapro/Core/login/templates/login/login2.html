@@ -1,0 +1,92 @@
+{% extends "login/Login.html" %} {% load crispy_forms_tags %} {% load static %}
+{% block content %}
+<div class="login-box">
+  <div class="card-header text-center">
+    <a href="{% url 'app:index' %}" class="h1"
+      ><b>MINPPAL </b>PORTUGUESA</a
+    >
+  </div>
+  <div class="card card-outline card-success">
+    <div class="card-body">
+      <img
+        src="" {% static 'img/AzonaProYuca.png' %} 
+        width="300"
+        height="200"
+      />
+      <p class="login-box-msg">Iniciar tu sesión</p>
+      <form action="#" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value=" {{next}} " />
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control form-control-user"
+            id="id_username"
+            name="username"
+            placeholder="Username"
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input
+            type="password"
+            id="id_password"
+            name="password"
+            class="form-control form-control-user"
+            placeholder="Password"
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <button type="submit" class="btn btn-success btn-block">
+              <span class="fas fa-sign-in-alt"></span> Acceder
+            </button>
+          </div>
+          <div class="col-lg-12 text-center">
+            <p class="mt-4 mb-0">
+              <a href="{% url 'user:Sembrador_crear' %}" style="color: gray">
+                No tengo una cuenta</a
+              >
+              <br />
+              <a href="{% url 'login:reset_password' %}" style="color: gray">
+                ¿Haz olvidado la contraseña?</a
+              >
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block javascript %}
+
+<script type="application/javascript">
+  {% if form.errors %}
+      var errors = '';
+      {% for field in form %}
+          {% for error in field.errors %}
+              errors += '{{ error }}\n';
+          {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+          errors += '{{ error }}\n';
+      {% endfor %}
+      Swal.fire({
+          title: 'Error!',
+          text: errors,
+          icon: 'error'
+      });
+  {% endif %}
+</script>
+
+{% endblock javascript %}
